@@ -1,0 +1,26 @@
+.dog {
+    background-color: rgb(183, 158, 138);
+    border: 2px solid #000000;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 12px 0;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 400px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.dog:hover {
+    transform: scale(1.02);
+    background-color: #ac9678;
+}
+
+.dog h2 {
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.dog p {
+    margin: 4px 0;
+    line-height: 1.4em;
+}

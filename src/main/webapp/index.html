@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DogSitting</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="style/main.css" rel="stylesheet" type="text/css" />
+    <link href="style/dropDown.css" rel="stylesheet" type="text/css" />
+    <link href="style/myDropDown.css" rel="stylesheet" type="text/css" />
+    <link href="style/home.css" rel="stylesheet" type="text/css" />
+    <link href="style/blog.css" rel="stylesheet" type="text/css" />
+    <link href="style/obj.css" rel="stylesheet" type="text/css" />
+    <link href="style/dog.css" rel="stylesheet" type="text/css" />
+    <link href="style/clickSort.css" rel="stylesheet" type="text/css" />
+    <link href="style/logon.css" rel="stylesheet" type="text/css" />
+    <link href="style/insertStyle.css" rel="stylesheet" type="text/css" />
+    <link href="style/updateStyle.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script src="https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="_JS_reusable/dropDownFW.js"></script>
+    <script src="_JS_reusable/MakeObj.js"></script>
+    <script src="_JS_reusable/MakeDog.js"></script>
+    <script src="_JS_reusable/ajax_alt.js"></script>
+    <script src="_JS_reusable/jsSort.js"></script>
+    <script src="_JS_reusable/sortOrder.js"></script>
+    <script src="_JS_reusable/filterObjList.js"></script>
+
+    <script src="_JS_CGF/MakeObj_CGF.js"></script>
+    <script src="_JS_CGF/DogList.js"></script>
+
+    <script type="text/babel" src="_React_reusable/ConvertEle.js"></script>
+
+    <script type="text/babel" src="_React_CGF/Home.js"></script>
+    <script type="text/babel" src="_React_CGF/Blog.js"></script>
+    <script type="text/babel" src="_React_CGF/MakeShowData.js"></script>
+    <script type="text/babel" src="_React_CGF/ShowDogs.js"></script>
+    <script type="text/babel" src="_React_CGF/ShowUsers.js"></script>
+    <script type="text/babel" src="_React_CGF/UserTable.js"></script>
+    <script type="text/babel" src="_React_CGF/LogonPage.js"></script>
+    <script type="text/babel" src="_React_CGF/ProfilePage.js"></script>
+    <script type="text/babel" src="_React_CGF/LogoffPage.js"></script>
+    <script type="text/babel" src="_React_CGF/UserInsertOrUpdate.js"></script>
+    <script type="text/babel" src="_React_CGF/DogInsertOrUpdate.js"></script>
+
+
+    <script type="text/babel">
+        "use strict";
+
+        dropDownFW({
+            dropHeaderStyle: "dropHeader",
+            dropContentStyle: "dropContent",
+            showStyle: "show",
+            hideStyle: "hide"
+        });
+
+        const { HashRouter, Route, Link } = ReactRouterDOM;
+
+        const App = () => (
+            <HashRouter>
+
+                <div id="titleNav">
+                    <div id="title">Jayden's Dog Sitting</div>
+
+                    <div id="nav">
+
+                        <div class="dropDown">
+                            <Link to="/home">Home</Link>
+                        </div>
+
+                        <div class="dropDown">
+                            <div class="dropHeader">Account</div>
+                            <div class="dropContent">
+                                <Link to="/login">Log In</Link><br />
+                                <Link to="/logout">Log Out</Link><br />
+                                <Link to="/profile">Get Profile</Link><br />
+                                <Link to="/userInsert">Register</Link><br />
+                            </div>
+                        </div>
+
+                        <div class="dropDown">
+                            <div class="dropHeader">Search</div>
+                            <div class="dropContent">
+                                <Link to="/showUsers">Search Users</Link><br />
+                                <Link to="/showDogs">Search Dogs</Link><br />
+                            </div>
+                        </div>
+
+                        <div class="dropDown">
+                            <Link to="/blog">Blog</Link>
+                        </div>
+
+                        <div class="dropDown">
+                            <div class="dropHeader">Homeworks JS</div>
+                            <div class="dropContent">
+                                <Link to="/myDog">JS Dog Objects</Link><br />
+                                <a target="_blank" href="docs/lupold_database.pdf">My DB PDF</a><br />
+                                <a target="_blank" href="docs/Web_API_Errors.pdf">My Error PDF</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="content">
+                    <Route path="/" exact component={Home} />
+                    <Route path="/home" component={Home} />
+                    <Route path="/myObj" component={() => <ConvertEle ele={MakeObj_CGF()} />} />
+                    <Route path="/showUsers" component={ShowUsers} />
+                    <Route path="/showDogs" component={ShowDogs} />
+                    <Route path="/blog" component={Blog} />
+                    <Route path="/myDog" render={() => <ConvertEle ele={DogList()} />} />
+
+                    <Route path="/login" component={LogonPage} />
+                    <Route path="/logout" component={LogoffPage} />
+                    <Route path="/profile" component={ProfilePage} />
+                    <Route path="/userInsert" component={UserInsertOrUpdate} />
+                    <Route path="/userUpdate/:id" component={UserInsertOrUpdate} />
+                    <Route path="/dogInsert" component={DogInsertOrUpdate} />
+                    <Route path="/dogUpdate/:id" component={DogInsertOrUpdate} />
+
+                </div>
+
+                <div id="footer">Jayden Lupold</div>
+
+            </HashRouter>
+        );
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

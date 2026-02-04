@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>API Testing Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    input,
+    button {
+      margin: 5px 0;
+      padding: 5px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .instructions {
+      color: #555;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>WebUser API Testing</h1>
+
+  <h2>Log On</h2>
+  <p class="instructions">
+    Enter a valid email and password, then click "Log On".
+  </p>
+  <input type="email" id="email" placeholder="Email" value="dudeman@gmail.com">
+  <input type="password" id="password" placeholder="Password" value="uyuyfuyf">
+  <button onclick="testLogon()">Log On</button>
+  <pre id="logonResult"></pre>
+
+  <h2>Get Profile</h2>
+  <p class="instructions">
+    Click "Get Profile" to get the currently logged-in user's profile.
+  </p>
+  <button onclick="testGetProfile()">Get Profile</button>
+  <pre id="profileResult"></pre>
+
+  <h2>Log Off</h2>
+  <p class="instructions">
+    Click "Log Off" to invalidate the current session.
+  </p>
+  <button onclick="testLogoff()">Log Off</button>
+  <pre id="logoffResult"></pre>
+
+  <script>
+    function ajax(url, callback) {
+      fetch(url)
+        .then(res => res.json())
+        .then(data => callback(data))
+        .catch(err => console.error('AJAX error:', err));
+    }
+
+    function testLogon() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const url = `/webUser/logonAPI?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+      ajax(url, data => {
+        document.getElementById('logonResult').textContent = JSON.stringify(data, null, 2);
+      });
+    }
+
+    function testGetProfile() {
+      ajax('/webUser/getProfileAPI', data => {
+        document.getElementById('profileResult').textContent = JSON.stringify(data, null, 2);
+      });
+    }
+
+    function testLogoff() {
+      ajax('/webUser/logoffAPI', data => {
+        document.getElementById('logoffResult').textContent = JSON.stringify(data, null, 2);
+      });
+    }
+  </script>
+</body>
+
+</html>

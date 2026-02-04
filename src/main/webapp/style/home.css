@@ -1,0 +1,15 @@
+.home {
+  text-align: center;
+  padding: 2rem;
+}
+
+.home .intro {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.contentPic {
+  width: 77%;
+  border-radius: 0.5rem;
+  box-shadow: 0.4rem 0.4rem 0.4rem rgba(0, 0, 0, 0.6);
+}

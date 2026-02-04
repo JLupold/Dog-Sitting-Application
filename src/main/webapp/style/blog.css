@@ -1,0 +1,16 @@
+.blog {
+  max-width: 800px;
+  margin: 2rem auto;
+  line-height: 1.6;
+}
+
+.blog h2 {
+  color: rgb(36, 36, 36);
+  border-bottom: 2px solid rgb(36, 36, 36);
+  padding-bottom: 0.5rem;
+}
+
+.blog h3 {
+  margin-top: 1.5rem;
+  color: rgb(36, 36, 36);
+}
